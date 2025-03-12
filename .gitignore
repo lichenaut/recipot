@@ -1,0 +1,8 @@
+# Please add here any environment variable and key locations added later
+.env
+.env.production
+env/
+venv/
+*.sqlite
+*.sqlite3
+*.sqlite3-journal
