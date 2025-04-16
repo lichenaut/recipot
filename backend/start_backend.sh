@@ -8,8 +8,8 @@ is_django_running() {
 # Function to start Django backend
 start_backend() {
     echo "Starting Django server..."
-    source venv/bin/activate  # Activate virtual environment
-    cd backend || { echo "Backend directory not found!"; exit 1; }
+    # source venv/bin/activate  # Activate virtual environment
+    # cd backend || { echo "Backend directory not found!"; exit 1; }
 
     while true; do
         if is_django_running; then
