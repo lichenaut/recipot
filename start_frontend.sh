@@ -6,7 +6,7 @@ start_frontend() {
     cd frontend || { echo "Frontend directory not found!"; exit 1; }
 
     while true; do
-        npm run dev -- --host 0.0.0.0 --port 5173 &
+        npm start -- --host 0.0.0.0 --port 3000 &
         FRONTEND_PID=$!
         echo "Vite server started with PID $FRONTEND_PID"
 
