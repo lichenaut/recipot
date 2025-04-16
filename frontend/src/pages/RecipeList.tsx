@@ -5,7 +5,6 @@ interface Tag {
   id: number;
   name: string;
 }
-
 interface Recipe {
   id: number;
   title: string;
@@ -15,51 +14,85 @@ interface Recipe {
   tags: Tag[];
 }
 
-function RecipeList() {
+export default function RecipeList() {
   const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const [tag, setTag] = useState<string>("");
+  const [tagFilter, setTagFilter] = useState("");
+  const [maxCookingTime, setMaxCookingTime] = useState<number | "">("");
+  const [maxPreheatTemp, setMaxPreheatTemp] = useState<number | "">("");
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:8000/api/v1/recipes/filter/?tag=${tag}`)
-      .then((response) => {
-        setRecipes(response.data as Recipe[]);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, [tag]);
+    const params = new URLSearchParams();
+    if (tagFilter) params.append("tag", tagFilter);
+    if (maxCookingTime !== "") params.append("cooking_time", `${maxCookingTime}`);
+    if (maxPreheatTemp !== "") params.append("preheat_temperature", `${maxPreheatTemp}`);
 
-  const handleTagChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTag(event.target.value);
-  };
+    axios
+      .get(`http://localhost:8000/api/v1/recipes/filter/?${params}`)
+      .then((res) => setRecipes(res.data))
+      .catch(console.error);
+  }, [tagFilter, maxCookingTime, maxPreheatTemp]);
 
   return (
-    <div>
-      <h1>Recipe List</h1>
-      <input
-        type="text"
-        value={tag}
-        onChange={handleTagChange}
-        placeholder="Search by tag"
-      />
-      <ul>
-        {recipes.map((recipe: Recipe) => (
-          <li key={recipe.id}>
-            <h2>{recipe.title}</h2>
-            <p>{recipe.description}</p>
-            <p>Cooking Time: {recipe.cooking_time} minutes</p>
-            <p>Preheat Temperature: {recipe.preheat_temperature}°F</p>
-            <ul>
-              {recipe.tags.map((tag: Tag) => (
-                <li key={tag.id}>{tag.name}</li>
+    <div className="max-w-6xl mx-auto p-6">
+      <h1 className="text-3xl font-bold mb-6 text-indigo-700">Recipe List</h1>
+
+      {/* Filters */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+        <input
+          type="text"
+          value={tagFilter}
+          onChange={(e) => setTagFilter(e.target.value)}
+          placeholder="Search by tag"
+          className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+        <input
+          type="number"
+          value={maxCookingTime}
+          onChange={(e) =>
+            setMaxCookingTime(e.target.value === "" ? "" : +e.target.value)
+          }
+          placeholder="Max cooking time"
+          className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+        <input
+          type="number"
+          value={maxPreheatTemp}
+          onChange={(e) =>
+            setMaxPreheatTemp(e.target.value === "" ? "" : +e.target.value)
+          }
+          placeholder="Max preheat temp (°F)"
+          className="border border-gray-300 rounded p-2 w-full focus:outline-none focus:ring-2 focus:ring-indigo-500"
+        />
+      </div>
+
+      {/* 3‑column grid of cards */}
+      <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {recipes.map((r) => (
+          <li
+            key={r.id}
+            className="bg-white rounded-lg shadow hover:shadow-md p-5 flex flex-col"
+          >
+            <h2 className="text-xl font-semibold mb-2 text-indigo-800">
+              {r.title}
+            </h2>
+            <p className="text-gray-700 mb-4 flex-grow">{r.description}</p>
+            <div className="flex justify-between text-sm text-gray-600 mb-4">
+              <span>⏱ {r.cooking_time} min</span>
+              <span>🔥 {r.preheat_temperature}°F</span>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {r.tags.map((t) => (
+                <span
+                  key={t.id}
+                  className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full"
+                >
+                  {t.name}
+                </span>
               ))}
-            </ul>
+            </div>
           </li>
         ))}
       </ul>
     </div>
   );
 }
-
-export default RecipeList;
