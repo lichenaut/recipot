@@ -3,7 +3,7 @@
 # Function to start Vite frontend
 start_frontend() {
     echo "Starting Vite frontend..."
-    # cd frontend || { echo "Frontend directory not found!"; exit 1; }
+    cd frontend || { echo "Frontend directory not found!"; exit 1; }
 
     while true; do
         npm run dev -- --host 0.0.0.0 --port 5173 &
