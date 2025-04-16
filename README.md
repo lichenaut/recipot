@@ -29,7 +29,6 @@ python manage.py runserver
 `cd` to this project's root, which is where this file is, and then run:
 
 ```
-echo 'API_URL="http://localhost:8000"' >> frontend/.env
 cd frontend
 npm start
 ```
