@@ -32,3 +32,5 @@ python manage.py runserver
 cd frontend
 npm start
 ```
+
+Make sure the `npm start` script in `package.json` points to the right API URL.

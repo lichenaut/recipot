@@ -23,11 +23,13 @@ export default function RecipeList() {
   useEffect(() => {
     const params = new URLSearchParams();
     if (tagFilter) params.append("tag", tagFilter);
-    if (maxCookingTime !== "") params.append("cooking_time", `${maxCookingTime}`);
-    if (maxPreheatTemp !== "") params.append("preheat_temperature", `${maxPreheatTemp}`);
+    if (maxCookingTime !== "")
+      params.append("cooking_time", `${maxCookingTime}`);
+    if (maxPreheatTemp !== "")
+      params.append("preheat_temperature", `${maxPreheatTemp}`);
 
     axios
-      .get(`http://localhost:8000/api/v1/recipes/filter/?${params}`)
+      .get(`${process.env.REACT_APP_API_URL}/api/v1/recipes/filter/?${params}`)
       .then((res) => setRecipes(res.data))
       .catch(console.error);
   }, [tagFilter, maxCookingTime, maxPreheatTemp]);

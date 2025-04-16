@@ -13,7 +13,7 @@ export default function RecipeForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8000/api/v1/recipes/", {
+      await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/recipes/`, {
         title,
         description,
         cooking_time: cookingTime,
@@ -31,9 +31,7 @@ export default function RecipeForm() {
       onSubmit={handleSubmit}
       className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow"
     >
-      <h1 className="text-2xl font-bold mb-4 text-indigo-700">
-        Upload Recipe
-      </h1>
+      <h1 className="text-2xl font-bold mb-4 text-indigo-700">Upload Recipe</h1>
 
       <div className="mb-4">
         <label className="block mb-1 font-medium">Title</label>
