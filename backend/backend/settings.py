@@ -46,8 +46,8 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ORIGIN_WHITELIST = (
     'http://localhost:8000',
     'http://localhost:3000',
-    'https://recipot.onrender.com/',
-    'https://recipot-backend.onrender.com/',
+    'https://recipot.onrender.com',
+    'https://recipot-backend.onrender.com',
 )
 
 MIDDLEWARE = [
