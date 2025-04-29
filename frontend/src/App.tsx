@@ -12,7 +12,7 @@ function App() {
           <div className="container mx-auto flex items-center justify-between p-4">
             <div className="flex items-center space-x-2">
               <img src={RecipeIcon} alt="Recipe Icon" className="w-8 h-8" />
-              <h1 className="text-2xl font-bold">Recipe Book</h1>
+              <h1 className="text-2xl font-bold">Recipot</h1>
             </div>
             <nav className="flex space-x-3">
               <Link
