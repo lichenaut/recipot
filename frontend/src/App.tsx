@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import RecipeList from "./pages/RecipeList.tsx";
 import RecipeForm from "./pages/RecipeForm.tsx";
+import RecipeIcon from "./recipot_logo.png";
 
 function App() {
   return (
@@ -9,7 +10,10 @@ function App() {
       <div className="min-h-screen bg-gray-50">
         <header className="bg-indigo-600 text-white shadow">
           <div className="container mx-auto flex items-center justify-between p-4">
-            <h1 className="text-2xl font-bold">Recipe Book</h1>
+            <div className="flex items-center space-x-2">
+              <img src={RecipeIcon} alt="Recipe Icon" className="w-8 h-8" />
+              <h1 className="text-2xl font-bold">Recipe Book</h1>
+            </div>
             <nav className="flex space-x-3">
               <Link
                 to="/"
