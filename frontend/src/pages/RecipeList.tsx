@@ -35,8 +35,11 @@ export default function RecipeList() {
   }, [tagFilter, maxCookingTime, maxPreheatTemp]);
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6 text-indigo-700">Recipe List</h1>
+    <div className="max-w-6xl mx-auto p-6 text-center">
+      {/* Black heading text directly on image */}
+      <h1 className="text-4xl font-extrabold mb-6 text-black drop-shadow-sm">
+        Recipe List
+      </h1>
 
       {/* Filters */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
@@ -67,7 +70,7 @@ export default function RecipeList() {
         />
       </div>
 
-      {/* 3‑column grid of cards */}
+      {/* Grid of recipe cards */}
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {recipes.map((r) => (
           <li
@@ -79,7 +82,7 @@ export default function RecipeList() {
             </h2>
             <p className="text-gray-700 mb-4 flex-grow">{r.description}</p>
             <div className="flex justify-between text-sm text-gray-600 mb-4">
-              <span>⏱ {r.cooking_time} min</span>
+              <span>⏱ {r.cooking_time} min</span>
               <span>🔥 {r.preheat_temperature}°F</span>
             </div>
             <div className="flex flex-wrap gap-2">
