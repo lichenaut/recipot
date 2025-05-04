@@ -17,12 +17,14 @@ function App() {
             <nav className="flex space-x-3">
               <Link
                 to="/"
+                title="Go to the full list of uploaded recipes"
                 className="bg-indigo-500 hover:bg-indigo-700 text-white font-semibold px-4 py-2 rounded transition"
               >
                 View Recipes
               </Link>
               <Link
                 to="/create-recipe"
+                title="Upload a new recipe to the database"
                 className="bg-green-500 hover:bg-green-700 text-white font-semibold px-4 py-2 rounded transition"
               >
                 Upload Recipe
