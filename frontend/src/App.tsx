@@ -7,7 +7,7 @@ import RecipeIcon from "./recipot_logo.png";
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-cooking bg-fixed bg-cover bg-center">
         <header className="bg-indigo-600 text-white shadow">
           <div className="container mx-auto flex items-center justify-between p-4">
             <div className="flex items-center space-x-2">
@@ -33,7 +33,7 @@ function App() {
           </div>
         </header>
 
-        <main className="container mx-auto p-6">
+        <main className="container mx-auto p-6 flex justify-center items-center min-h-[80vh]">
           <Routes>
             <Route path="/" element={<RecipeList />} />
             <Route path="/create-recipe" element={<RecipeForm />} />
