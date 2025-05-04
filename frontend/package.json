@@ -25,7 +25,8 @@
     "react-scripts": "^5.0.1",
     "rimraf": "^6.0.1",
     "web-vitals": "^2.1.4",
-    "workbox-background-sync": "^7.3.0"
+    "workbox-background-sync": "^7.3.0",
+    "framer-motion": "^12.9.4"
   },
   "scripts": {
     "start": "react-scripts start",

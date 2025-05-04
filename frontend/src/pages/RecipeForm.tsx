@@ -27,76 +27,111 @@ export default function RecipeForm() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-[80vh]">
-      <form
-        onSubmit={handleSubmit}
-        className="max-w-lg w-full bg-white/80 backdrop-blur-md p-6 rounded-xl shadow-xl"
+    <form
+      onSubmit={handleSubmit}
+      className="
+        max-w-lg mx-auto
+        bg-white/30 backdrop-blur-lg           /* more opaque = higher contrast */
+        border border-white/40 shadow-2xl      /* thicker border + deeper shadow */
+        rounded-2xl p-10 text-gray-900        /* dark text over lighter glass */
+      "
+    >
+      <h1 className="text-center text-2xl font-extrabold mb-8 text-white">
+        Upload Recipe
+      </h1>
+
+      <div className="mb-5">
+        <label className="text-gray block mb-1 font-medium">Title</label>
+        <input
+          type="text"
+          title="Enter Recipe Title"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+          className="
+            w-full bg-white/60 text-black placeholder-gray-500
+            border border-white/50 rounded-md px-3 py-2
+            focus:outline-none focus:ring-2 focus:ring-indigo-600/70
+          "
+        />
+      </div>
+
+      <div className="mb-5">
+        <label className="text-gray block mb-1 font-medium">Description</label>
+        <textarea
+          value={description}
+          title="Enter Recipe Steps and Description"
+          onChange={(e) => setDescription(e.target.value)}
+          required
+          className="
+            w-full bg-white/60 text-black placeholder-gray-500
+            border border-white/50 rounded-md px-3 py-2 h-28
+            focus:outline-none focus:ring-2 focus:ring-indigo-600/70
+          "
+        />
+      </div>
+
+      <div className="grid grid-cols-2 gap-4 mb-5">
+        <div>
+          <label className="text-gray block mb-1 font-medium">Cooking Time (min)</label>
+          <input
+            type="number"
+            value={cookingTime}
+            title="Enter Total Cooking Time"
+            onChange={(e) => setCookingTime(+e.target.value)}
+            required
+            className="
+              w-full bg-white/60 text-black placeholder-gray-500
+              border border-white/50 rounded-md px-3 py-2
+              focus:outline-none focus:ring-2 focus:ring-indigo-600/70
+            "
+          />
+        </div>
+        <div>
+          <label className="text-gray block mb-1 font-medium">Preheat Temp (°F)</label>
+          <input
+            type="number"
+            value={preheatTemp}
+            title="Enter Preheat Temperature"
+            onChange={(e) => setPreheatTemp(+e.target.value)}
+            required
+            className="
+              w-full bg-white/60 text-black placeholder-gray-500
+              border border-white/50 rounded-md px-3 py-2
+              focus:outline-none focus:ring-2 focus:ring-indigo-600/70
+            "
+          />
+        </div>
+      </div>
+
+      <div className="mb-8">
+        <label className="text-gray block mb-1 font-medium">Tags (comma‑sep)</label>
+        <input
+          type="text"
+          value={tags}
+          title="Enter Recipe Tags"
+          onChange={(e) => setTags(e.target.value)}
+          placeholder="e.g. vegan, quick"
+          className="
+            w-full bg-white/60 text-black placeholder-gray-500
+            border border-white/50 rounded-md px-3 py-2
+            focus:outline-none focus:ring-2 focus:ring-indigo-600/70
+          "
+        />
+      </div>
+
+      <button
+        type="submit"
+        title="Submit your recipe"
+        className="
+          bg-green-600/80 hover:bg-green-600
+          text-white font-semibold
+          px-6 py-2 rounded-md shadow-lg
+          transition
+        "
       >
-        <h1 className="text-2xl font-bold mb-4 text-indigo-700">Upload Recipe</h1>
-
-        <div className="mb-4">
-          <label className="block mb-1 font-medium">Title</label>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          />
-        </div>
-
-        <div className="mb-4">
-          <label className="block mb-1 font-medium">Description</label>
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-            className="w-full border border-gray-300 rounded px-3 py-2 h-24 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          />
-        </div>
-
-        <div className="grid grid-cols-2 gap-4 mb-4">
-          <div>
-            <label className="block mb-1 font-medium">Cooking Time (min)</label>
-            <input
-              type="number"
-              value={cookingTime}
-              onChange={(e) => setCookingTime(+e.target.value)}
-              required
-              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-          </div>
-          <div>
-            <label className="block mb-1 font-medium">Preheat Temp (°F)</label>
-            <input
-              type="number"
-              value={preheatTemp}
-              onChange={(e) => setPreheatTemp(+e.target.value)}
-              required
-              className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-          </div>
-        </div>
-
-        <div className="mb-6">
-          <label className="block mb-1 font-medium">Tags (comma‑sep)</label>
-          <input
-            type="text"
-            value={tags}
-            onChange={(e) => setTags(e.target.value)}
-            placeholder="e.g. vegan, quick"
-            className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-          />
-        </div>
-
-        <button
-          type="submit"
-          title="Submit your recipe to the database"
-          className="bg-green-600 hover:bg-green-800 text-white font-semibold px-6 py-2 rounded transition"
-        >
-          Upload
-        </button>
-      </form>
-    </div>
+        Upload
+      </button>
+    </form>
   );
 }
